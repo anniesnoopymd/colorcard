@@ -1,0 +1,58 @@
+@charset "UTF-8";
+* {
+  font-family: "Chalkboard SE", 微軟正黑體;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  padding-top: 50px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+textarea {
+  width: 100%;
+  height: 400px;
+  letter-spacing: 1px;
+  line-heigh: 30px;
+  font-family: "Chalkboard SE";
+}
+
+.colorcard {
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 5px 4px 3px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+  cursor: pointer;
+}
+.colorcard:hover {
+  transform: translate(-5px, -5px);
+}
+.colorcard .block {
+  height: 100px;
+  width: 100%;
+  display: inline-block;
+}
+.colorcard .name {
+  font-weight: bold;
+  font-size: 15px;
+}
+.colorcard .code {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.4);
+}
+.colorcard .info {
+  padding: 5px;
+}
+
+li {
+  padding: 10px;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dynamic Color Card with Sass</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="colorcard.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<!-- 掛載CSS樣式
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+	-->
+</head>
+<body>
+	<script>
+	$(document).ready(function () {
+		console.log('after');
+		var vm = new Vue({
+   el: "#app" ,
+   data:{
+      colorsetting:"//顏色變數\n$color_black: #303030\n$color_bg: #f7f0e9\n$color_berry: #d56134\n$color_top: #9c4215\n$color_md_1: #F3d1ba\n$color_md_2: #f7e1cd\n$color_bottom: #773000\n$color_cherry_1: #ff613a\n$color_cherry_2: #df5333 " ,
+
+   },
+   computed: {
+      colorcards: function(){
+         var result = [];
+         var cut_string =this.colorsetting.split('\n');
+         for(var i=0;i<cut_string.length;i++){
+
+            var name=cut_string[i].split(':')[0];
+            var color=cut_string[i].split(' ')[1];
+            if(name.indexOf("color")!=-1){
+               result.push({
+               name: name,
+               color: color,
+               colorcss:{
+                  "background-color": color
+
+            }
+         });
+      }
+         }
+         return result;
+      }
+   }
+}
+);
+	});
+	console.log('before');
+	</script>
+<div class="container" id="app">
+  <h1>sass 變數色卡網頁工具</h1>
+  <hr/>
+  <div class="row">
+    <div class="col-sm-4">
+      <textarea v-model="colorsetting"></textarea>
+    </div>
+    <div class="col-sm-8">
+      <ul class="row">
+        <li class="col-sm-4" v-for="card in colorcards">
+          <div class="colorcard">
+            <div class="block" :style="card.colorcss"></div>
+            <div class="info">
+              <div class="name">{{card.name}}</div>
+              <div class="code">{{card.color}}</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>
